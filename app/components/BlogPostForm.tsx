@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const onSubmit = (title: string, content: string) => {
   // Handle form submission, e.g., send data to server
@@ -12,12 +13,15 @@ const BlogPostForm: React.FC = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
+  const router = useRouter();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     onSubmit(title, content)
     setTitle('')
     setContent('')
+    router.push(`/api/add-blog?title=${title}&content=${content}`)
   }
 
   return (
