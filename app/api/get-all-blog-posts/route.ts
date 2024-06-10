@@ -1,10 +1,9 @@
-import { sql } from '@vercel/postgres';
-import { NextResponse } from 'next/server';
+import { sql } from '@vercel/postgres'
+import { NextResponse } from 'next/server'
 
-export async function GET(){
+export async function GET() {
+  const posts = await sql`select * from blog;`
+  const postss = posts.rows
 
-    const posts = await sql`select * from blog;`;
-    const postss = posts.rows;
-
-    return NextResponse.json({posts}, {status:200});
+  return NextResponse.json({ postss }, { status: 200 })
 }

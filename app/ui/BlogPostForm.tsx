@@ -13,7 +13,7 @@ const BlogPostForm: React.FC = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
-  const router = useRouter();
+  const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

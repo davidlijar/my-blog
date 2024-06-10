@@ -1,23 +1,19 @@
 import Image from 'next/image'
 ;<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-import {GET} from './api/get-all-blog-posts/route'
+import { fetchBlogPosts } from './lib/data'
+import DisplayBlogPost from './ui/DisplayBlogPost'
 
-export  default async function Home() {
-
-  const res = await GET();
-  
+export default async function Home() {
+  const res = await fetchBlogPosts()
 
   return (
     <div>
-      {res.map((post:any)=>{
-        return(
-          <div>
-            <h1>{post.title}</h1>
-            <p>{post.content}</p>
-          </div>
-        )
-      })}
+      {res.map((data) => (
+        <div key={data.id}>
+          <DisplayBlogPost title={data.title} content={data.content} />
+        </div>
+      ))}
     </div>
   )
 }
